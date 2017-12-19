@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 style="text-align: center"> Compatibility Survery</h1>
+            <hr>
+            <p style="text-align: center">See if you are the toast to someone's butter</p>
+        </div>
+        {{> form}}
+        <button id="submitScore" type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
+            <span class="glyphicon glyphicon-check"></span>
+            Submit</button>
+    </div>
+    {{> footer}}
+    <script src="./js/survey.js"></script>
+</body>
+</html>
+<div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">
+                    <strong>Best Match</strong>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <h2 id="match-name"></h2>
+                <img id="match-img" src="" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,28 +1,38 @@
 //consts to require npm packages
 const express = require('express')
-const parser = require('body-parser')
+const bodyParser = require('body-parser')
 const hbs = require('hbs')
 const path = require('path');
+var exphbs = require("express-handlebars");
 
 //get express started
 const app = express();
 var PORT = 3000;
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ type: '*/*' }))
 
-hbs.registerPartials(__dirname + '/views/partials')
-app.set('view engine', 'hbs')
+// hbs.registerPartials(__dirname + '/views/partials');
 
-app.use(express.static(__dirname + '/public'));
+// app.set('view engine', 'hbs')
 
-hbs.registerHelper('getCurrentYear', () => {
-    return new Date().getFullYear()
-});
+app.use(express.static('./app'));
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// hbs.registerHelper('getCurrentYear', () => {
+//     return new Date().getFullYear()
+// });
+
+require("./routing/apiRoutes")(app)
+
 
 app.get('/', (req, res) => {
-    res.render('home.hbs')
+    res.render('home')
 });
 
 app.get('/survey', (req, res) => {
-    res.render('survey.hbs')
+    res.render('survey')
 });
 
 //listen
