@@ -1,6 +1,6 @@
-
-  $('#submitScore').on('click', (event) => {
+$('#submitScore').on('click', (event) => {
     event.preventDefault();
+    
   var userProf = {
                   name: $('#name').val().trim(),
                   picture: $('#profPic').val().trim(),
@@ -21,7 +21,10 @@
     //   }
     //   );
     $.post("/api/friends/", userProf, function(data){
-      
       $('#results-modal').modal('show');
+      console.log(data)
+      $('#match-name').html(data.friendName);
+      console.log(data.friendName)
+      $('#match-img').attr('src', data.friendPic)
     })
 })
